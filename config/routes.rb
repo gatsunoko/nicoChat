@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :rooms
   get 'home/index'
-  root 'home#index'
+  root 'rooms#index'
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     confirmations: 'users/confirmations',
                                     sessions: "users/sessions",
