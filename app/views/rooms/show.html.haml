@@ -15,27 +15,30 @@
 = link_to 'Back', rooms_path
 
 :javascript
-  App.room1 = App.cable.subscriptions.create({
-    channel: 'RoomChannel',
-    room: #{@room.id}
-  }, {
-    connected: function() {},
-    disconnected: function() {},
-    received: function(data) {
-      return $('#messages').append(data['message']);
-    },
-    speak: function(message, room_id) {
-      return this.perform('speak', {
-        message: message,
-        room_id: room_id
-      });
-    }
-  });
+  (function() {
+    App.room1 = App.cable.subscriptions.create({
+      channel: 'RoomChannel',
+      room: #{@room.id}  // channelに送られた後、params['room']で取り出せる
+    }, {
+      connected: function() {
+      },
+      disconnected: function() {
+      },
+      received: function(data) {
+        return $('#messages').append(data['message']);
+      },
+      speak: function(message, room_id) {
+        return this.perform('speak', {
+          message: message,
+        });
+      }
+    });
 
-  $(document).on('keypress', '[data-behavior~=room_speaker]', function(event) {
-    if (event.keyCode === 13) {
-      App.room1.speak(event.target.value, #{@room.id});
-      event.target.value = '';
-      return event.preventDefault();
-    }
-  });
+    $(document).on('keypress', '[data-behavior~=room_speaker]', function(event) {
+      if (event.keyCode === 13) {
+        App.room1.speak(event.target.value, #{@room.id});
+        event.target.value = '';
+        return event.preventDefault();
+      }
+    });
+  })();
