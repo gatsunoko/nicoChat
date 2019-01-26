@@ -3,21 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .room_show {
-  position:relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   .messages {
-    overflow: auto;
-    position: fixed;
-    top: 52px;
-    left: 0;
-    height: 84vh;
-    @media screen and(max-width: 700px) {
-      height: 70vh;
-    }
+    /*overflow: auto;*/
     width: 100%;
     background-color: #08088A;
     padding: 5px 5px;
     box-sizing: border-box;
+    margin-bottom: 10vh;
     .message_area {
       display: flex;
       justify-content: flex-start;
@@ -70,15 +65,22 @@
     bottom: 0;
     left: 0;
     height: 10vh;
-    .text_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    .textarea {
       margin-top: 10px;
-      width: 90%;
+      width: 80%;
       height: 30px;
       padding: 10px;
       font-size: 1em;
       font-family: Arial, sans-serif;
       border: solid 1px #ccc;
       border-radius: 3px;
+    }
+    #send_button {
+      width: 17%;
     }
   }
 }

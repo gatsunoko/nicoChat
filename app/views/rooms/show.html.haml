@@ -1,8 +1,6 @@
 - content_for :header do
   .link
     %a{href: "javascript:history.back();", class: 'back_link', id: 'back_button'} <
-  .link
-    = link_to 'Edit', edit_room_path(@room)
   .title
     %h3
       = @room.title
@@ -12,9 +10,14 @@
     - @messages.each do |message|
       = render 'message', message: message
   .input_area
-    %form
-      %textarea{'data-behavior' => "room_speaker", class: 'text_box'}
-      -# %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
+    %textarea{'data-behavior' => "room_speaker", class: 'textarea', id: 'textarea'}
+    -# %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
+    %button{class: 'btn', id: 'send_button'}
+      送信
+  :css
+    .contants {
+      padding-top: 42px;
+    }
   :javascript
     (function() {
       App.room1 = App.cable.subscriptions.create({
@@ -27,7 +30,16 @@
         },
         received: function(data) {
           $('#messages').append(data['message']);
-          $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
+          //scrollTopはブラウザによって扱える要素が違う
+          //safari用
+          $('body').delay(100).animate({
+            scrollTop: $(document).height()
+          },500);
+          //chrome用
+          $('html').delay(100).animate({
+            scrollTop: $(document).height()
+          },500);      
+          //$('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
           return
         },
         speak: function(message, room_id) {
@@ -37,11 +49,9 @@
         }
       });
 
-      $(document).on('keypress', '[data-behavior~=room_speaker]', function(event) {
-        if (event.keyCode === 13) {
-          App.room1.speak(event.target.value, #{@room.id});
-          event.target.value = '';
-          return event.preventDefault();
-        }
+      //送信
+      $('#send_button').click(function() {
+        App.room1.speak($('#textarea').val(), #{@room.id});
+        $('#textarea').val('');
       });
     })();
