@@ -1,17 +1,19 @@
+- content_for :header do
+  .link
+    %a{href: "javascript:history.back();", class: 'back_link', id: 'back_button'} <
+  .link
+    = link_to 'Edit', edit_room_path(@room)
+  .title
+    %h3
+      = @room.title
+</div>
 .room_show
-  %h2
-    = @room.title
   .messages#messages
     - @messages.each do |message|
       = render 'message', message: message
-
-  %form
-    %input{type: "text", 'data-behavior' => "room_speaker"}
-
-  = link_to 'Edit', edit_room_path(@room)
-  \|
-  = link_to 'Back', rooms_path
-
+  .input_area
+    %form
+      %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
   :javascript
     (function() {
       App.room1 = App.cable.subscriptions.create({
@@ -23,7 +25,9 @@
         disconnected: function() {
         },
         received: function(data) {
-          return $('#messages').append(data['message']);
+          $('#messages').append(data['message']);
+          $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
+          return
         },
         speak: function(message, room_id) {
           return this.perform('speak', {
