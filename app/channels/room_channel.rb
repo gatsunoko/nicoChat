@@ -8,7 +8,12 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
+    room = Room.find(params['room'].to_i)
+    master = false
+    if current_user.present? && current_user.id == room.user.id
+      master = true
+    end
     # params['room'] に現在のroomが入っている
-    Message.create!(text: data['message'], room_id: params['room'])
+    Message.create!(text: data['message'], room_id: params['room'], master: master)
   end
 end

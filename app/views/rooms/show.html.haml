@@ -8,12 +8,13 @@
       = @room.title
 </div>
 .room_show
-  .messages#messages
+  %ul.messages#messages
     - @messages.each do |message|
       = render 'message', message: message
   .input_area
     %form
-      %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
+      %textarea{'data-behavior' => "room_speaker", class: 'text_box'}
+      -# %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
   :javascript
     (function() {
       App.room1 = App.cable.subscriptions.create({

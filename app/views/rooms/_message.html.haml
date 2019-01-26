@@ -1,3 +1,13 @@
-.message
-  %p
-    = message.text
+- if message.master?
+  - master = ' master_chat'
+- else
+  - master = ''
+%li{class: "message_area#{master}"}
+  %p.thumbnail
+    - if message.master?
+      = message.room.user.name
+    - else
+      名無しさん
+  .message
+    %p
+      = simple_format(message.text)

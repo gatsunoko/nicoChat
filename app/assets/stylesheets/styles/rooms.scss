@@ -10,16 +10,57 @@
     position: fixed;
     top: 52px;
     left: 0;
-    height: 83vh;
+    height: 84vh;
+    @media screen and(max-width: 700px) {
+      height: 70vh;
+    }
     width: 100%;
-    background-color: green;
+    background-color: #08088A;
     padding: 5px 5px;
     box-sizing: border-box;
-    .message {
-      background-color: white;
-      padding: 5px;
-      border-radius: 15rem;
-      margin: 5px 0;
+    .message_area {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      .thumbnail {
+        display: inline-block;
+        width: 300px;
+        height: 17px;
+        background-color: #08088A;
+        margin-right: 10px;
+        flex-shrink: 1;
+        color: white;
+        font-size: 0.8rem;
+      }
+      .message {
+        background-color: white;
+        padding: 5px;
+        border-radius: 1rem;
+        margin: 5px 0;
+        flex-shrink: 40;
+      }
+    }
+    .master_chat {
+      align-items: flex-end;
+      .thumbnail {
+        text-align: right;
+        display: inline-block;
+        width: 300px;
+        height: 17px;
+        background-color: #08088A;
+        margin-right: 10px;
+        flex-shrink: 1;
+        color: white;
+        font-size: 0.8rem;
+      }
+      .message {
+        background-color: #A9F5F2;
+        padding: 5px;
+        border-radius: 1rem;
+        margin: 5px 0;
+        flex-shrink: 40;
+      }
     }
   }
   .input_area {
@@ -32,12 +73,12 @@
     .text_box {
       margin-top: 10px;
       width: 90%;
+      height: 30px;
       padding: 10px;
-      font-size: 1.3em;
+      font-size: 1em;
       font-family: Arial, sans-serif;
       border: solid 1px #ccc;
       border-radius: 3px;
-      box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
     }
   }
 }

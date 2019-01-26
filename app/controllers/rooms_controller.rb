@@ -11,6 +11,9 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    if user_signed_in?
+      session[:user_id] = current_user.id
+    end
     @messages = Message.where('room_id = ?', params[:id])
     #@messages = Message.all
   end
