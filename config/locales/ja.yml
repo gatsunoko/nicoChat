@@ -48,8 +48,8 @@ ja:
   activerecord:
     models:
       user: 'ユーザー'
-      article: '奢って欲しい物'
-      present: '奢らせて!!'
+      room: '部屋'
+      genre: 'ジャンル'
     attributes:
       user:
         email: 'メールアドレス'
@@ -59,9 +59,11 @@ ja:
         password: 'パスワード'
         password_confirmation: '確認用パスワード'
         current_password: '現在のパスワード'
-      article:
-        title: '奢って欲しい物'
-        text: 'テキスト'
+      genre:
+        title: 'タイトル'
+      room:
+        title: 'タイトル'
+        genre_id: 'ジャンル'
     errors:
       messages:
         record_invalid: 'バリデーションエラー'

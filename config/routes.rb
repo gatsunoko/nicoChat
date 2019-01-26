@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :rooms
+  resources :genres, only: [:index, :show]
   get 'home/index'
-  root 'rooms#index'
+  root 'genres#index'
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     confirmations: 'users/confirmations',
                                     sessions: "users/sessions",

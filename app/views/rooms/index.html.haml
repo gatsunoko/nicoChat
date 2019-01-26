@@ -1,23 +1,11 @@
-%h1 Listing rooms
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @rooms.each do |room|
-      %tr
-        %td= room.title
-        %td= room.user_id
-        %td= link_to 'Show', room
-        %td= link_to 'Edit', edit_room_path(room)
-        %td= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Room', new_room_path
+%h1 rooms
+.rooms
+  - @rooms.each do |room|
+    .room
+      = link_to room_path(room) do 
+        %p
+          = room.title
+        -#
+          %td= link_to 'Show', room
+          %td= link_to 'Edit', edit_room_path(room)
+          %td= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }

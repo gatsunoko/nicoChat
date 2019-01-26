@@ -2,10 +2,26 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title RailsTemplate52
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
+    %title chat
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    %link{href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", rel: "stylesheet"}
   %body
-    = yield
+    #header
+      .header_child
+        .link{style: 'font-size: 2.5em;'}
+          = link_to '', root_path, class: 'home fas fa-home'
+        - if user_signed_in?
+          .link{style: 'font-size: 2.5em;'}
+            = link_to '', new_room_path, class: 'post far fa-plus-square'
+        - if user_signed_in?
+          .link
+            = link_to 'ログアウト', destroy_user_session_path, method: :delete
+        - else
+          .link
+            = link_to 'ログイン', new_user_session_path
+    .contants
+      = yield
