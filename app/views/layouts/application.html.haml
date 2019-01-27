@@ -18,6 +18,9 @@
           .link{style: 'font-size: 2.5em;'}
             = link_to '', root_path, class: 'home fas fa-home'
           - if user_signed_in?
+            .link
+              = link_to user_path(current_user.id) do
+                .mypage
             .link{style: 'font-size: 2.5em;'}
               = link_to '', new_room_path, class: 'post far fa-plus-square'
           - if user_signed_in?
