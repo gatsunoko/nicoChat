@@ -48,7 +48,13 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: nico_chat_production
-  username: nico_chat
-  password: <%= ENV['RAILS_TEMPLATE5_2_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: <%= ENV["USERNAME"] %>
+  password: <%= ENV["PASSWORD"] %>
+  host: <%= ENV["HOST"] %>
+  port: 3306
+  database: <%= ENV["DATABASE"] %>
+  socket: /var/lib/mysql/mysql.sock
+
