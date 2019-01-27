@@ -1,4 +1,5 @@
 #この部屋ごとにチャットルームをわける場合room show に直接書いてるから、このファイルは必要ない
+###
 App.room = App.cable.subscriptions.create "RoomChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -11,3 +12,4 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   speak: (message, room_id) ->
     @perform 'speak', message: message, room_id: room_id
+###
