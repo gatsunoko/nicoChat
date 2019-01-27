@@ -14,8 +14,12 @@ class RoomsController < ApplicationController
     if user_signed_in?
       session[:user_id] = current_user.id
     end
+
+    viewCount = 30
     @messages = Message.where('room_id = ?', params[:id])
-    #@messages = Message.all
+    if @messages.count > viewCount
+      @messages = @messages.offset(@messages.count - viewCount).limit(viewCount).order(id: :asc)
+    end
   end
 
   # GET /rooms/new

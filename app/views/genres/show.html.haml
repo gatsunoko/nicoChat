@@ -1,7 +1,8 @@
-%h1 Genres#show
-.rooms
-  - @rooms.each do |room|
-    .room
-      = link_to room_path(room) do
-        %p
-          = room.title
+.genre_show
+  %h2 チャットルーム一覧
+  %ul.rooms
+    - @rooms.each do |room|
+      %li.room
+        = link_to room_path(room) do
+          %p
+            = room.title

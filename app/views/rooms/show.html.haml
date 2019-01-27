@@ -20,6 +20,16 @@
     }
   :javascript
     (function() {
+      //scrollTopはブラウザによって扱える要素が違う
+      //safari用
+      $('body').delay(100).animate({
+        scrollTop: $(document).height()
+      },500);
+      //chrome用
+      $('html').delay(100).animate({
+        scrollTop: $(document).height()
+      },500);
+
       App.room1 = App.cable.subscriptions.create({
         channel: 'RoomChannel',
         room: #{@room.id}  // channelに送られた後、params['room']で取り出せる
@@ -38,7 +48,7 @@
           //chrome用
           $('html').delay(100).animate({
             scrollTop: $(document).height()
-          },500);      
+          },500);
           //$('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
           return
         },
@@ -50,8 +60,17 @@
       });
 
       //送信
+      //送信ボタンクリック
       $('#send_button').click(function() {
         App.room1.speak($('#textarea').val(), #{@room.id});
         $('#textarea').val('');
+      });
+      //Shift + Enter
+      $('#textarea').keyup(function(e) {
+        $(document).scrollTop($('#messages').height());
+        if(e.keyCode == 13 && e.shiftKey) {
+          App.room1.speak($('#textarea').val(), #{@room.id});
+          $('#textarea').val('');
+        }  
       });
     })();

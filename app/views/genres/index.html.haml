@@ -1,5 +1,6 @@
-%h1 Genre#index
-.genres
-  - @genres.each do |genre|
-    .genre
-      = link_to genre.title, genre_path(genre) 
+.genre_index
+  %h1 ジャンル一覧
+  %ul.genres
+    - @genres.each do |genre|
+      %li.genre
+        = link_to genre.title, genre_path(genre) 
