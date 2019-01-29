@@ -1,9 +1,12 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
+    #発言者のipを発言時取得するためにアクセサしておく
+    attr_accessor :ip_addr
 
     def connect
       self.current_user = find_verified_user
+      @ip_addr = request.remote_ip
     end
 
     private

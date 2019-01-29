@@ -4,10 +4,9 @@
   - master = ''
 %li{class: "message_area#{master}"}
   %p.thumbnail
-    - if message.master?
-      = message.room.user.name
-    - else
-      名無しさん
+    = message.username
+    = " | "
+    = message.uuid
   .message
     %p
       = simple_format(message.text)
