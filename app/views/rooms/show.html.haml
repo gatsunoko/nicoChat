@@ -10,10 +10,12 @@
     - @messages.each do |message|
       = render 'message', message: message
   .input_area
-    %textarea{'data-behavior' => "room_speaker", class: 'textarea', id: 'textarea'}
-    -# %input{type: "text", 'data-behavior' => "room_speaker", class: 'text_box'}
-    %button{class: 'btn', id: 'send_button'}
-      送信
+    .upper
+      %input{'data-behavior' => "room_speaker", tyle: 'text', id: 'username', placeholder: '名無しさん'}
+    .lower
+      %textarea{'data-behavior' => "room_speaker", id: 'textarea'}
+      %button{class: 'btn', id: 'send_button'}
+        送信
   :css
     .contants {
       padding-top: 42px;
@@ -52,9 +54,10 @@
           //$('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
           return
         },
-        speak: function(message, room_id) {
+        speak: function(message, username) {
           return this.perform('speak', {
             message: message,
+            username: username
           });
         }
       });
@@ -62,14 +65,14 @@
       //送信
       //送信ボタンクリック
       $('#send_button').click(function() {
-        App.room1.speak($('#textarea').val(), #{@room.id});
+        App.room1.speak($('#textarea').val(), $('#username').val());
         $('#textarea').val('');
       });
       //Shift + Enter
       $('#textarea').keyup(function(e) {
         $(document).scrollTop($('#messages').height());
         if(e.keyCode == 13 && e.shiftKey) {
-          App.room1.speak($('#textarea').val(), #{@room.id});
+          App.room1.speak($('#textarea').val(), $('#username').val());
           $('#textarea').val('');
         }  
       });

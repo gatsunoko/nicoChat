@@ -10,9 +10,14 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     room = Room.find(params['room'].to_i)
     master = false
+
     username = "名無しさん"
+    if data['username'].present?
+      username = data['username'].to_s
+    end
+
     if current_user.present? && current_user.id == room.user.id
-      username = current_user.name
+      # username = current_user.name
       master = true
     end
 
@@ -20,6 +25,10 @@ class RoomChannel < ApplicationCable::Channel
     uuid.slice!(0, 2)
 
     # params['room'] に現在のroomが入っている
-    Message.create!(text: data['message'], room_id: params['room'], master: master, username: username, uuid: uuid)
+    Message.create!(text: data['message'],
+                    room_id: params['room'],
+                    master: master,
+                    username: username,
+                    uuid: uuid)
   end
 end
