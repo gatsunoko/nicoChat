@@ -77,7 +77,7 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(:genre_id, :title, :user_id)
+      params.require(:room).permit(:category_id, :title, :user_id)
     end
 
     def is_mine
