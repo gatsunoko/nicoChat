@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Genre.create(title: 'ニュース', enum_key: 'news')
-Genre.create(title: '雑談', enum_key: 'chat')
+Category.create(title: 'ニュース', enum_key: 'news')
+Category.create(title: '雑談', enum_key: 'chat')

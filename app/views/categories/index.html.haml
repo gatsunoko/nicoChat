@@ -1,0 +1,6 @@
+.category_index
+  %h1 ジャンル一覧
+  %ul.categories
+    - @categories.each do |category|
+      %li.category
+        = link_to category.title, category_path(category) 

@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_151212) do
+ActiveRecord::Schema.define(version: 2019_01_30_044802) do
 
-  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "enum_key"
     t.datetime "created_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_01_28_151212) do
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.integer "user_id", default: 1, null: false
-    t.integer "genre_id", default: 1, null: false
+    t.integer "category_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

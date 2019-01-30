@@ -3,7 +3,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
     create_table :rooms do |t|
       t.string :title, null: false, default: ""
       t.integer :user_id, null: false, default: 1
-      t.integer :genre_id, null: false, default: 1
+      t.integer :category_id, null: false, default: 1
 
       t.timestamps
     end

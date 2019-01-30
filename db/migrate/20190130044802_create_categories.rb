@@ -1,9 +1,9 @@
-class CreateGenres < ActiveRecord::Migration[5.2]
+class CreateCategories < ActiveRecord::Migration[5.2]
   def change
-    create_table :genres do |t|
+    create_table :categories do |t|
       t.string :title
       t.string :enum_key
-
+      
       t.timestamps
     end
   end

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'users/edit'
   get 'users/update'
   resources :rooms
-  resources :genres, only: [:index, :show]
+  resources :categories, only: [:index, :show]
   get 'home/index'
-  root 'genres#index'
+  root 'categories#index'
   devise_for :users, controllers: { registrations: 'users/registrations',
                                     confirmations: 'users/confirmations',
                                     sessions: "users/sessions",
