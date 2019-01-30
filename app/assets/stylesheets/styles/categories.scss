@@ -1,15 +1,23 @@
-// Place all the styles related to the genres controller here.
+// Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.genre_index {
+.category_index {
+  ul {
+    li:nth-child(even) {
+      background-color: #E0F8F1;
+    }
+    li:nth-child(odd) {
+      background-color: pink;
+    }
+  }
   a {
     font-size: 1.2rem;
     margin: 0.4rem 0;
   }
 }
 
-.genre_show {
+.category_show {
   ul.rooms {
     li {
       p {

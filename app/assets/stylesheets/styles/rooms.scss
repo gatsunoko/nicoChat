@@ -26,6 +26,10 @@
         flex-shrink: 1;
         color: white;
         font-size: 0.8rem;
+        .uuid {
+          font-size: 0.6em;
+          color: #E6E6E6;
+        }
       }
       .message {
         background-color: white;
@@ -33,6 +37,11 @@
         border-radius: 1rem;
         margin: 5px 0;
         flex-shrink: 40;
+        max-width: 100%;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
     .master_chat {

@@ -6,7 +6,8 @@
   %p.thumbnail
     = message.username
     = " | "
-    = message.uuid
+    %span.uuid
+      = message.uuid
   .message
     %p
       = simple_format(message.text)

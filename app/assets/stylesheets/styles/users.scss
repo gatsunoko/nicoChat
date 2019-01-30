@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.user_show {
+  ul.rooms {
+    li {
+      p {
+        font-size: 1.2rem;
+        margin: 0.4rem 0;
+      }
+    }
+    li:nth-child(even) {
+      background-color: #E0F2F7;
+    }
+    li:nth-child(odd) {
+      background-color: #CEF6F5;
+    }
+  }
+}
+
 .login_button {
   margin: 15px 0;
 }
