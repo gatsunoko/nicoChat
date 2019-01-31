@@ -4,6 +4,7 @@
   .title
     %h3
       = @room.title
+  = render 'rooms/share', contents_id: @room.id, contents_name: @room.title, share_url: ENV['ROOM_SHARE_URL']
 </div>
 .room_show
   %ul.messages#messages

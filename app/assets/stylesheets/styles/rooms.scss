@@ -6,6 +6,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  max-width: 980px;
+  margin: 0 auto;
   .messages {
     width: 100%;
     background-color: #08088A;

@@ -21,7 +21,9 @@ class RoomChannel < ApplicationCable::Channel
       master = true
     end
 
-    uuid = self.connection.ip_addr.crypt("#{ENV['CRYPT_KEY']}")
+    ip = self.connection.ip_addr
+    ip = "#{Date.today.day}" + ip
+    uuid = ip.crypt("#{ENV['CRYPT_KEY']}")
     uuid.slice!(0, 2)
 
     # params['room'] に現在のroomが入っている
