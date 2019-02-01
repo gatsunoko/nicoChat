@@ -15,10 +15,18 @@ class RoomsController < ApplicationController
       session[:user_id] = current_user.id
     end
 
-    viewCount = 30
-    @messages = Message.where('room_id = ?', params[:id])
-    if @messages.count > viewCount
-      @messages = @messages.offset(@messages.count - viewCount).limit(viewCount).order(id: :asc)
+    @all = false
+    if params[:all].present? && params[:all] == 'true'
+      @messages = Message.where('room_id = ?', params[:id]).order(id: :asc)
+      @all = true
+    else
+      viewCount = 50
+      @messages = Message.where('room_id = ?', params[:id])
+      if @messages.count > viewCount
+        @messages = @messages.offset(@messages.count - viewCount).limit(viewCount).order(id: :asc)
+      else
+        @all = true
+      end
     end
   end
 

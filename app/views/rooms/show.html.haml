@@ -8,6 +8,9 @@
 </div>
 .room_show
   %ul.messages#messages
+    - unless @all
+      .more_link_area
+        = link_to '過去ログ全部みる', room_path(@room, all: true)
     - @messages.each do |message|
       = render 'message', message: message
   .input_area
@@ -21,18 +24,20 @@
     .contants {
       padding-top: 42px;
     }
+  - unless @all
+    :javascript
+      (function() {
+        //scrollTopはブラウザによって扱える要素が違う
+        //safari用
+        $('body').delay(100).animate({
+          scrollTop: $(document).height()
+        },500);
+        //chrome用
+        $('html').delay(100).animate({
+          scrollTop: $(document).height()
+        },500);
   :javascript
     (function() {
-      //scrollTopはブラウザによって扱える要素が違う
-      //safari用
-      $('body').delay(100).animate({
-        scrollTop: $(document).height()
-      },500);
-      //chrome用
-      $('html').delay(100).animate({
-        scrollTop: $(document).height()
-      },500);
-
       App.room1 = App.cable.subscriptions.create({
         channel: 'RoomChannel',
         room: #{@room.id}  // channelに送られた後、params['room']で取り出せる
