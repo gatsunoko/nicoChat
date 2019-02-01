@@ -5,7 +5,7 @@
     %h3
       = @room.title
   = render 'rooms/share', contents_id: @room.id, contents_name: @room.title, share_url: ENV['ROOM_SHARE_URL']
-</div>/
+</div>
 .room_show
   %ul.messages#messages
     - unless @all
@@ -24,7 +24,7 @@
     .contants {
       padding-top: 42px;
     }
-  - unless @all
+  - if @firstScroll
     :javascript
       (function() {
         //scrollTopはブラウザによって扱える要素が違う
@@ -36,6 +36,7 @@
         $('html').delay(100).animate({
           scrollTop: $(document).height()
         },500);
+      })();
   :javascript
     (function() {
       App.room1 = App.cable.subscriptions.create({

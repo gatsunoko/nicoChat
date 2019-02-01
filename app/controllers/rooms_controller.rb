@@ -16,16 +16,23 @@ class RoomsController < ApplicationController
     end
 
     @all = false
+    @firstScroll = true
     if params[:all].present? && params[:all] == 'true'
       @messages = Message.where('room_id = ?', params[:id]).order(id: :asc)
       @all = true
+      @firstScroll = false
     else
       viewCount = 50
       @messages = Message.where('room_id = ?', params[:id])
       if @messages.count > viewCount
         @messages = @messages.offset(@messages.count - viewCount).limit(viewCount).order(id: :asc)
       else
-        @all = true
+        if request.referer =~ /.*rooms.*/
+          @all = false
+          @firstScroll = false
+        else
+          @all = true
+        end
       end
     end
   end
