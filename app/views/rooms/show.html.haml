@@ -5,7 +5,7 @@
     %h3
       = @room.title
   = render 'rooms/share', contents_id: @room.id, contents_name: @room.title, share_url: ENV['ROOM_SHARE_URL']
-</div>
+</div>/
 .room_show
   %ul.messages#messages
     - unless @all
@@ -47,17 +47,22 @@
         disconnected: function() {
         },
         received: function(data) {
+          //受信したチャットを追加する前にスクロールバー位置取得
+          let scrollPositon = getScrollBottom()
+          //added
           $('#messages').append(data['message']);
-          //scrollTopはブラウザによって扱える要素が違う
-          //safari用
-          $('body').delay(100).animate({
-            scrollTop: $(document).height()
-          },500);
-          //chrome用
-          $('html').delay(100).animate({
-            scrollTop: $(document).height()
-          },500);
-          //$('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
+          //スクロールバーが一番下から30px未満ならチャット受信時自動スクロール
+          if (scrollPositon < 30) {
+            //scrollTopはブラウザによって扱える要素が違う
+            //safari用
+            $('body').delay(100).animate({
+              scrollTop: $(document).height()
+            },500);
+            //chrome用
+            $('html').delay(100).animate({
+              scrollTop: $(document).height()
+            },500);
+          }
           return
         },
         speak: function(message, username) {
@@ -83,3 +88,10 @@
         }  
       });
     })();
+
+    function getScrollBottom() {
+      var body = window.document.body;
+      var html = window.document.documentElement;
+      var scrollTop = body.scrollTop || html.scrollTop;
+      return html.scrollHeight - html.clientHeight - scrollTop;
+    }
