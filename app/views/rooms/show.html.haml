@@ -13,17 +13,19 @@
         = link_to '過去ログ全部みる', room_path(@room, all: true)
     - @messages.each do |message|
       = render 'message', message: message
-  .input_area
+  .input_area#input_area
     .upper
-      %input{'data-behavior' => "room_speaker", tyle: 'text', id: 'username', placeholder: '名無しさん'}
+      %input{'data-behavior' => "room_speaker", tyle: 'text', id: 'username', placeholder: '名無しさん', maxlength: "20"}
+      %input{type:"text", id: "characnt", disabled: "disabled"}
     .lower
-      %textarea{'data-behavior' => "room_speaker", id: 'textarea'}
+      %textarea{'data-behavior' => "room_speaker", id: 'textarea', onkeyup: "document.getElementById('characnt').value=1000 - this.value.length"}
       %button{class: 'btn', id: 'send_button'}
         送信
   :css
     .contants {
       padding-top: 42px;
     }
+    /
   - if @firstScroll
     :javascript
       (function() {
