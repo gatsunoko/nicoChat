@@ -15,7 +15,7 @@
       = render 'message', message: message
   .input_area#input_area
     .upper
-      %input{'data-behavior' => "room_speaker", tyle: 'text', id: 'username', placeholder: '名無しさん', maxlength: "20"}
+      %input{'data-behavior' => "room_speaker", tyle: 'text', id: 'username', placeholder: '名無しさん', maxlength: "20", onChange: "usernameSave(this)" }
       %input{type:"text", id: "characnt", disabled: "disabled"}
     .lower
       %textarea{'data-behavior' => "room_speaker", id: 'textarea', onkeyup: "document.getElementById('characnt').value=1000 - this.value.length"}
@@ -91,6 +91,15 @@
           $('#textarea').val('');
         }  
       });
+
+      //Cookieからユーザー名を取得してセット
+      var cookies = document.cookie.split(';');
+      cookies.forEach(function(value) {
+          var content = value.split('=');
+          if (content[1] && content[0] == "username") {
+            $('#username').val(unescape(content[1]));
+          }
+      })
     })();
 
     function getScrollBottom() {
@@ -98,4 +107,9 @@
       var html = window.document.documentElement;
       var scrollTop = body.scrollTop || html.scrollTop;
       return html.scrollHeight - html.clientHeight - scrollTop;
+    }
+
+    //名前が変更された時Cookieに保存
+    function usernameSave(name) {
+      document.cookie = 'username=' + escape(name.value); 
     }
