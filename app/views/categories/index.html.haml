@@ -1,6 +1,15 @@
 .category_index
-  %h1 カテゴリ一覧
-  %ul.categories
-    - @categories.each do |category|
-      %li.category
-        = link_to category.title, category_path(category) 
+  .left
+    %h1 カテゴリ一覧
+    %ul.categories
+      - @categories.each do |category|
+        %li.category
+          = link_to category.title, category_path(category)
+  .right
+    %h2 チャットルーム一覧
+    %ul.rooms
+      - @rooms.each do |room|
+        %li.room
+          = link_to room_path(room) do
+            %p
+              = room.title

@@ -3,17 +3,50 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .category_index {
-  ul {
-    li:nth-child(even) {
-      background-color: #E0F8F1;
+  max-width: 980px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  .left {
+    height: 100%;
+    border-right: 2px solid black;
+    padding: 10px;
+    ul {
+      li {
+        margin: 5px 0;
+      }
+      li:nth-child(even) {
+        background-color: #FBEFF8;
+      }
+      li:nth-child(odd) {
+        background-color: #F5A9E1;
+      }
     }
-    li:nth-child(odd) {
-      background-color: pink;
+    a {
+      font-size: 1.2rem;
+      margin: 0.4rem 0;
     }
   }
-  a {
-    font-size: 1.2rem;
-    margin: 0.4rem 0;
+  .right {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    ul.rooms {
+      li {
+        p {
+          font-size: 1.2rem;
+          margin: 0.4rem 0;
+        }
+      }
+      li:nth-child(even) {
+        background-color: #E0F2F7;
+      }
+      li:nth-child(odd) {
+        background-color: #CEF6F5;
+      }
+    }
   }
 }
 
@@ -26,10 +59,10 @@
       }
     }
     li:nth-child(even) {
-      background-color: #E0F8F1;
+      background-color: #E0F2F7;
     }
     li:nth-child(odd) {
-      background-color: pink;
+      background-color: #CEF6F5;
     }
   }
 }
