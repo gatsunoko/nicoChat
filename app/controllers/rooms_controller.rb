@@ -49,7 +49,8 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    @room = Room.new(room_params)
+    @category = Category.find_by(id: params[:room][:category_id].to_i)
+    @room = @category.rooms.build(room_params)
 
     respond_to do |format|
       if @room.save

@@ -35,9 +35,20 @@
     padding: 10px;
     ul.rooms {
       li {
-        p {
+        margin-bottom: 10px;
+        a {
+          text-decoration: none;
+        }
+        p.room_title {
           font-size: 1.2rem;
           margin: 0.4rem 0;
+          display: inline-block;
+          color: #08088A;
+        }
+        p.room_category {
+          font-size: 1rem;
+          color: #D8D8D8;
+          display: inline-block;
         }
       }
       li:nth-child(even) {
