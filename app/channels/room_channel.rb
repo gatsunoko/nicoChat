@@ -25,6 +25,8 @@ class RoomChannel < ApplicationCable::Channel
     ip = "#{Date.today.day}" + ip
     uuid = ip.crypt("#{ENV['CRYPT_KEY']}")
     uuid.slice!(0, 2)
+    uuid.gsub!(".", "")
+    uuid.gsub!("/", "")
 
     # params['room'] に現在のroomが入っている
     Message.create!(text: data['message'],

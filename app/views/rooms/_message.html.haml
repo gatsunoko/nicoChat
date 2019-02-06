@@ -2,11 +2,11 @@
   - master = ' master_chat'
 - else
   - master = ''
-%li{class: "message_area#{master}"}
+%li{class: "message_area#{master} uuid#{message.uuid}"}
   %p.thumbnail
     = message.username
     = " | "
-    %span.uuid
+    %span.uuid{onClick: "userMute('#{message.uuid}')"}
       = message.uuid
       = " | "
     %span.date

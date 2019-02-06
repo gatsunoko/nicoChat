@@ -8,9 +8,9 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   .left {
-    height: 100%;
+    min-height: 100%;
     border-right: 2px solid black;
     padding: 10px;
     ul {

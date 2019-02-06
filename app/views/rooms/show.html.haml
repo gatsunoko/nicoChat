@@ -1,6 +1,6 @@
 - content_for :header do
   .link
-    %a{href: "javascript:history.back();", class: 'back_link', id: 'back_button'} <
+    = link_to '<', category_path(@room.category), class: 'back_link', id: 'back_button'
   .title
     %h3
       = @room.title
@@ -25,6 +25,7 @@
     .contants {
       padding-top: 42px;
       height: 0;
+      min-height: 0;
     }
     /
   - if @firstScroll
@@ -112,4 +113,30 @@
     //名前が変更された時Cookieに保存
     function usernameSave(name) {
       document.cookie = 'username=' + escape(name.value); 
+    }
+
+    //uuid指定して色変更できる機能
+    function userMute(uuid) {
+      // $('.uuid' + uuid).css('display', 'none');
+      let colors = ['#F6CECE',
+                    '#F6E3CE',
+                    '#F2F5A9',
+                    '#D0F5A9',
+                    '#A9F5BC',
+                    '#A9F5F2',
+                    '#A9BCF5',
+                    '#9F81F7',
+                    '#D0A9F5',
+                    '#F6CEEC',
+                    '#F6CED8',
+                    '#FA5882',
+                    '#FF00FF',
+                    '#7401DF',
+                    '#01DFD7',
+                    '#01DF01',
+                    '#FF8000',
+                    '#DF0101',
+                    '#04B4AE'];
+      let rand = Math.floor(colors.length*Math.random());
+      $('.uuid' + uuid + ' .message').css('background-color', colors[rand]);
     }
