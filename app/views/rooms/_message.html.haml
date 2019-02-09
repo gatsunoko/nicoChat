@@ -13,4 +13,4 @@
       = message.created_at.strftime('%Y/%m/%d %H:%M')
   .message
     %p
-      = simple_format(message.text)
+      = simple_format(sanitize(message.text, tags: %w(p br a)))
