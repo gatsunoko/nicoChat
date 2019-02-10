@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2019_01_30_044802) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.string "enum_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_044802) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "uuid"
+    t.string "ip"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

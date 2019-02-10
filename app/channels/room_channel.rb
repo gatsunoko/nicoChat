@@ -22,17 +22,26 @@ class RoomChannel < ApplicationCable::Channel
     end
 
     ip = self.connection.ip_addr
-    ip = "#{Date.today.day}" + ip
-    uuid = ip.crypt("#{ENV['CRYPT_KEY']}")
+    uuid = "#{Date.today.day}" + ip
+    uuid = uuid.crypt("#{ENV['CRYPT_KEY']}")
     uuid.slice!(0, 2)
     uuid.gsub!(".", "")
     uuid.gsub!("/", "")
 
-    # params['room'] に現在のroomが入っている
-    Message.create!(text: data['message'],
-                    room_id: params['room'],
-                    master: master,
-                    username: username,
-                    uuid: uuid)
+    # 10秒以内に10回以上投稿してたら規制する
+    now = Time.now
+    secondsAgo = now - 10
+    messagesCount = Message.where(ip: ip).where('created_at > ?', secondsAgo).count
+
+    # 連投規制
+    if messagesCount <= 5
+      # params['room'] に現在のroomが入っている
+      Message.create!(text: data['message'],
+                      room_id: params['room'],
+                      master: master,
+                      username: username,
+                      ip: ip,
+                      uuid: uuid)
+    end
   end
 end
