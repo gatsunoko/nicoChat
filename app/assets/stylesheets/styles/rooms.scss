@@ -125,3 +125,17 @@
     }
   }
 }
+
+.room_new,
+.room_edit {
+  .category {
+    max-width: 250px;
+  }
+  .title {
+    max-width: 500px;
+    .title_field {
+      box-sizing: border-box;
+      height: 40px;
+    }
+  }
+}

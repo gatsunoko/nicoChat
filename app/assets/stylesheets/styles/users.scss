@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .user_show {
+  max-width: 680px;
+  margin: 0 auto;
+  min-height: 100%;
   ul.rooms {
     li {
       p {

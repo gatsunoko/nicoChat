@@ -6,11 +6,11 @@
         - @room.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :category_id 
-    = f.collection_select :category_id, Category.all, :id, :title, {}, {:selected => :category_id}
-  .field
+  .category
+    = f.label 'カテゴリ' 
+    = f.collection_select :category_id, Category.all, :id, :title, {}, {:selected => :category_id, class: 'form-control'}
+  .title
     = f.label :title
-    = f.text_field :title
+    = f.text_field :title, class: 'form-control title_field'
   .actions
     = f.submit '保存', class: 'btn'
